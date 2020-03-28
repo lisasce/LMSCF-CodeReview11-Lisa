@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2020 at 03:12 PM
+-- Generation Time: Mar 28, 2020 at 04:38 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -33,7 +33,7 @@ CREATE TABLE `animals` (
   `name` varchar(50) NOT NULL,
   `species` varchar(200) NOT NULL,
   `birthdate` date DEFAULT NULL,
-  `adoptableDate` date DEFAULT NULL,
+  `adoptableSince` date DEFAULT NULL,
   `animalImg` varchar(500) DEFAULT NULL,
   `type` enum('small','large','senior') DEFAULT 'small',
   `website` varchar(200) DEFAULT NULL,
@@ -45,11 +45,11 @@ CREATE TABLE `animals` (
 -- Dumping data for table `animals`
 --
 
-INSERT INTO `animals` (`animalID`, `name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`, `adoptedByUserID`) VALUES
-(1, 'Guizmo', 'cat', '2010-10-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_960_720.jpg', 'senior', NULL, 1, NULL),
+INSERT INTO `animals` (`animalID`, `name`, `species`, `birthdate`, `adoptableSince`, `animalImg`, `type`, `website`, `fk_locationID`, `adoptedByUserID`) VALUES
+(1, 'Guizmo', 'Cat', '2010-10-31', '2010-11-05', 'https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_960_720.jpg', 'senior', '', 1, 5),
 (2, 'Bouchon', 'cat', '2019-10-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2017/11/14/13/06/kitty-2948404_960_720.jpg', 'small', 'https://www.kitty-cats.blog/', 3, NULL),
-(3, 'Hamtaro', 'hamster', '2020-01-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2015/03/26/09/41/hamster-690108_960_720.jpg', 'small', 'https://www.pinterest.com/transparentspec/hamtaro/', 2, NULL),
-(4, 'Pikpik', 'hedgehog', '2020-03-01', '2020-03-27', 'https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg', 'small', 'https://www.highlandtitles.fr/2019/10/guide-du-herisson/', 1, NULL),
+(3, 'Hamtaro', 'hamster', '2020-01-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2015/03/26/09/41/hamster-690108_960_720.jpg', '', 'https://www.pinterest.com/transparentspec/hamtaro/', 2, NULL),
+(4, 'Pikpik', 'Hedgehog', '2020-02-28', '2019-04-17', 'https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg', 'small', 'https://www.highlandtitles.fr/2019/10/guide-du-herisson/', 1, 4),
 (5, 'Belle', 'dog', '2017-10-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2017/07/25/04/14/great-pyrenees-2536899_960_720.jpg', 'large', NULL, 2, NULL),
 (6, 'Bernard', 'dog', '2018-10-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2016/08/02/20/42/domestic-dog-1564978_960_720.jpg', 'large', NULL, 3, NULL),
 (7, 'Zeus', 'horse', '2010-10-31', '2020-03-27', 'https://cdn.pixabay.com/photo/2017/12/10/15/16/white-horse-3010129_960_720.jpg', 'senior', NULL, 4, NULL),
@@ -67,7 +67,7 @@ INSERT INTO `animals` (`animalID`, `name`, `species`, `birthdate`, `adoptableDat
 
 CREATE TABLE `hobbies` (
   `hobbyID` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `hobbyName` varchar(50) NOT NULL,
   `fk_animalID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -75,7 +75,7 @@ CREATE TABLE `hobbies` (
 -- Dumping data for table `hobbies`
 --
 
-INSERT INTO `hobbies` (`hobbyID`, `name`, `fk_animalID`) VALUES
+INSERT INTO `hobbies` (`hobbyID`, `hobbyName`, `fk_animalID`) VALUES
 (1, 'sleeping', 1),
 (2, 'eating', 1),
 (3, 'playing', 12),
@@ -88,7 +88,15 @@ INSERT INTO `hobbies` (`hobbyID`, `name`, `fk_animalID`) VALUES
 (10, 'snoring', 5),
 (11, 'cuddling', 3),
 (12, 'being outside', 10),
-(13, 'being outside', 8);
+(13, 'being outside', 8),
+(27, 'playing', 1),
+(28, 'looking to horses', 1),
+(29, 'looking TV', 1),
+(30, 'running', 1),
+(31, 'mc donald fries', 1),
+(32, 'genmachai', 1),
+(33, 'wool blankets', 1),
+(37, 'doing nothing', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +122,8 @@ INSERT INTO `locations` (`locationID`, `address`, `zip`, `city`, `country`, `coo
 (1, 'Mautner-Markhof-Gasse 28', '1110', 'Vienna', 'Austria', '48.177737', '16.420788'),
 (2, '2 rue avenue des chats perdus', '75000', 'Paris', 'France', '48.5112', '2.2055'),
 (3, '5 Sir Dog Street', 'WC2R', 'London', 'UK', '51.3030', '-0.732'),
-(4, '1 sheep way', 'F12 P6C9', 'Clonbur', 'Ireland', '53.3242', '-9.2151');
+(4, '1 sheep way', 'F12 P6C9', 'Clonbur', 'Ireland', '53.3242', '-9.2151'),
+(12, 'Mautner-Markhof-Gasse, 28/1/12', '1110', 'Vienna', 'Austria', '', '');
 
 -- --------------------------------------------------------
 
@@ -128,7 +137,7 @@ CREATE TABLE `users` (
   `lastName` varchar(50) NOT NULL,
   `email` varchar(200) NOT NULL,
   `userPass` varchar(256) NOT NULL,
-  `birthdate` date DEFAULT NULL,
+  `birth` date DEFAULT NULL,
   `userImg` varchar(50) DEFAULT NULL,
   `userStatus` enum('user','admin','superadmin') DEFAULT 'user',
   `fk_locationID` int(11) DEFAULT NULL
@@ -138,11 +147,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `firstName`, `lastName`, `email`, `userPass`, `birthdate`, `userImg`, `userStatus`, `fk_locationID`) VALUES
-(1, 'lisa', 'sce', 'lisa@hmail.com', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/chi', 'user', 1),
-(2, 'admin', 'admin', 'admin@mail.com', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/wom', 'admin', 2),
-(3, 'super', 'super', 'super@mail.com', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/wom', 'superadmin', 3),
-(4, 'nihad', 'abou', 'nihad@mail.com', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/man', 'user', 4);
+INSERT INTO `users` (`userID`, `firstName`, `lastName`, `email`, `userPass`, `birth`, `userImg`, `userStatus`, `fk_locationID`) VALUES
+(2, 'admin', 'admin', 'admin@mail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/wom', 'admin', 2),
+(3, 'super', 'super', 'super@mail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/wom', 'superadmin', 3),
+(4, 'nihad', 'abou', 'nihad@mail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/man', 'user', 4),
+(5, 'lisa', 'lisa', 'lisa@mail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', NULL, NULL, 'user', NULL);
 
 --
 -- Indexes for dumped tables
@@ -185,25 +194,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `animalID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `animalID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `hobbies`
 --
 ALTER TABLE `hobbies`
-  MODIFY `hobbyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `hobbyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `locationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `locationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
