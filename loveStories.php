@@ -61,11 +61,81 @@ if( !isset($_SESSION['admin']) && !isset($_SESSION['user'])) {
         </form>
     </nav>
 
-    <div id="animalContent" class="container mt-sm-5 ">
+    <div id="animalContent" class="container d-flex justify-content-around row mt-sm-5 mx-auto">
 
-        <img src="img/guizmo.jpg" alt="">
-        <img src="img/soon.jpg" alt="">
-
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img src="img/moz.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Taz + Angelika</h2>
+                    <p>Our morning session &#128522; </p><p>and this since 20 years already! I'm so grateful that you made us meet &#x2764;</p>
+                </div>
+            </div>
+        </div>
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img src="img/lisaTaz.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Lili + Tazounours</h2>
+                    <p>Me and my BFF</p><p>&#x2764; &#x2764; &#x2764; &#x2764; &#x2764; &#x2764; &#x2764; &#x2764; </p>
+                </div>
+            </div>
+        </div>
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img src="img/peter.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Peter + Moritz</h2>
+                    <p>Trying to get some work done with the perfect assistant ever, thanks my friend!  </p><p>💪 &#128522;</p>
+                </div>
+            </div>
+        </div>
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img src="img/orange.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Ipad-Cat + Ari</h2>
+                    <p> &#128522; </p><p>Always looking football together and falling asleep - guess who? 😂</p>
+                </div>
+            </div>
+        </div>
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img id="lenny" src="img/lisaLenny.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Family Smith + Lenny</h2>
+                    <p>Thanks dear True Friendship Team for letting us adopting Lenny! She is so kind and as you can see, we also got a nice surprise! 😉</p>
+                </div>
+            </div>
+        </div>
+        <div class="flip-box m-2">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <img src="img/guizmo.jpg" alt="Paris" style="width:330px;height:220px">
+                </div>
+                <div class="flip-box-back p-2">
+                    <br>
+                    <h2>Guizmo + Lisa</h2>
+                    <p> &#x2764;<br>
+                    You're the love of my life, my best friend, my baby, my everthing. There is no word on earth to describe our relationship...<br> &#x2764;</p>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
