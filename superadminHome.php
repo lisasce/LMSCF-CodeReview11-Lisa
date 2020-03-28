@@ -4,7 +4,7 @@ session_start();
 require_once 'database/dbAccess.php';
 $conn = connect();
 // if session is not admin and also not user, this will redirect to login page
-if(!isset($_SESSION['admin']) && !isset($_SESSION['user'])) {
+if(!isset($_SESSION['admin']) && !isset($_SESSION['user']) && !isset($_SESSION['superadmin'])) {
     header("Location: index.php");
     exit;
 }
@@ -12,6 +12,11 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
     header("Location: home.php");
     exit;
 }
+if(isset($_SESSION['admin'])){  //if you are a user but not an admin
+    header("Location: adminHome.php");
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,9 +54,6 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
                     <a class="nav-link" id="add" href="addAnimal.php">Add a new animal</a>
                 </li>
                 <li class="nav-item active ml-5">
-                    <a class="nav-link" id="add" href="superadminHome.php">Manage users</a>
-                </li>
-                <li class="nav-item active ml-5">
                     <a class="nav-link" id="add" href="home.php">User's home</a>
                 </li>
                 <li class="nav-item active ml-5">
@@ -69,88 +71,15 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
         </form>
     </nav>
 
-    <div id="animalContent" class="container mt-sm-5 ">
-        <div id="message" class="row">
-            <?php
-            $typeQ= "SELECT * FROM animals  INNER JOIN `locations` ON `fk_locationID`= `locationID`  ";
-            $animal=mysqli_query($conn, $typeQ);
-            $animalRow = $animal->fetch_all(MYSQLI_ASSOC);
+    <div id="animalContent" class="container d-flex justify-content-around row mt-sm-5 mx-auto">
 
-            foreach ($animalRow as $value) {
-                echo "<div class='AnimalVisibility mx-auto text-center card p-2' style='width: 15rem;'>
-                              <img class='card-img-top ' src='". $value['animalImg']."' alt='Card image cap'>
-                              <div class='card-body'>
-                                <h5 class='card-title'><strong>" . $value["name"] . "</strong></h5>
-                                <p class='card-text'>" . $value["species"] . " <br> " . $value["city"] ."</p>
-                                <p><a class='btn btn-secondary mt-1 mb-1' href='showDetail.php?id=".$value['animalID']."'>Details</a><a class='btn btn-danger' href='deleteAnimal.php?id=".$value['animalID' ]."'>Delete</a> 
-                            <a class=' btn btn-warning ' href='updateAnimal.php?id=".$value['animalID']."'>Update</a></p>
-                              </div>
-                            </div>";
-            }
-            ?>
-        </div>
+        <p>Superadmin is a badass</p>
+
     </div>
-</div>
 <footer class="navbar navbar-expand-lg navbar-dark bg-dark  mt-1 mt-sm-5 mb-0">
     <a class="navbar-brand" href="#">True &#x2764;</a>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    var request;
-    // Bind to the submit event of our form (id for the form tag)
-    $("#input").keyup(function(event){
-        // Prevent default posting of form - put here to work in case of errors
-        event.preventDefault();
-        // Abort any pending request
-        if (request) {
-            request.abort();
-        }
-        // setup some local variables
-        var $form = $(this);
-        // Let's select and cache all the fields
-        var $inputs = $form.find("input, select, button, textarea");
-        // Serialize the data in the form
-        var serializedData = $form.serialize();
-        // Let's disable the inputs for the duration of the Ajax request.
-        // Note: we disable elements AFTER the form data has been serialized.
-        // Disabled form elements will not be serialized.
-        $inputs.prop("disabled", true);
-        // Fire off the request to /form.php
-        request = $.ajax({
-            url: "database/searchBar.php",
-            type: "post",
-            data: serializedData
-        });
-        // Callback handler that will be called on success
-        request.done(function (response, textStatus, jqXHR){
-            // Log a message to the console
-            console.log("request status: success");
-            document.getElementById("message").innerHTML = response;
 
-        });
-        // Callback handler that will be called on failure
-        request.fail(function (jqXHR, textStatus, errorThrown){
-            // Log the error to the console
-            console.error(
-                "The following error occurred: "+
-                textStatus, errorThrown
-            );
-        });
-        // Callback handler that will be called regardless
-        // if the request failed or succeeded
-        request.always(function () {
-            // Reenable the inputs
-            $inputs.prop("disabled", false);
-            if($("#input").val() != ''){
-                $(".AnimalVisibility").hide();
-            }
-            else{
-                $(".AnimalVisibility").show();
-                $("#message").html("");
-            }
-        });
-    });
-</script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

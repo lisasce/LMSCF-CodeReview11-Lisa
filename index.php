@@ -12,6 +12,10 @@ if(isset($_SESSION['admin']) != ''){
     header('Location: adminHome.php');
     exit;
 }
+if(isset($_SESSION['superadmin']) != ''){
+    header('Location: superadminHome.php');
+    exit;
+}
 $error = false;
 
 if( isset($_POST['btn-login']) ) {
@@ -42,9 +46,12 @@ if( isset($_POST['btn-login']) ) {
             if($row['userStatus'] == 'user'){
                 $_SESSION['user'] = $row['userID'];
                 header( "Location: home.php");
-            }else {
+            }elseif ($row['userStatus'] == 'admin') {
                 $_SESSION['admin'] = $row['userID'];
                 header("Location: adminHome.php");
+            }else {
+                $_SESSION['superadmin'] = $row['userID'];
+                header("Location: superadminHome.php");
             }
 
         } else {

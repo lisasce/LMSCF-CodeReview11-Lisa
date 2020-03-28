@@ -163,9 +163,7 @@ if ( isset($_POST['btn-signup']) ) {
         </form >
 
     </div>
-    <footer class="navbar navbar-expand-lg navbar-dark bg-dark  mt-1 mt-sm-5 mb-0">
-        <a class="navbar-brand" href="#">True &#x2764;</a>
-    </footer>
+
 </div>
 <footer class="navbar navbar-expand-lg navbar-dark bg-dark  mt-1 mt-sm-5 mb-0">
     <a class="navbar-brand" href="#">True &#x2764;</a>
