@@ -1,0 +1,160 @@
+INSERT INTO `locations`(`address`, `zip`, `city`, `country`, `coordX`, `coordY`) 
+VALUES ('Mautner-Markhof-Gasse 28', '1110', 'Vienna', 'Austria', '48.177737', '16.420788');
+INSERT INTO `locations`(`address`, `zip`, `city`, `country`, `coordX`, `coordY`) 
+VALUES ('2 rue avenue des chats perdus', '75000', 'Paris', 'France', '48.5112', '2.2055');
+INSERT INTO `locations`(`address`, `zip`, `city`, `country`, `coordX`, `coordY`) 
+VALUES ('5 Sir Dog Street', 'WC2R', 'London', 'UK', '51.3030', '-0.732');
+INSERT INTO `locations`(`address`, `zip`, `city`, `country`, `coordX`, `coordY`) 
+VALUES ('1 sheep way', 'F12 P6C9', 'Clonbur', 'Ireland', '53.3242', '-9.2151');
+
+INSERT INTO `users`(`firstName`, `lastName`, `email`, `userPass`, `birthdate`,`userImg`, `fk_locationID`) 
+VALUES ('lisa','sce', 'lisa@hmail.com', 
+'8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/child-1153101_960_720.jpg', 1);
+INSERT INTO `users`(`firstName`, `lastName`, `email`, `userPass`, `birthdate`, `userImg`,`fk_locationID`) 
+VALUES ('admin','admin', 'admin@mail.com', 
+'8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/woman-1153099_960_720.jpg', 2);
+INSERT INTO `users`(`firstName`, `lastName`, `email`, `userPass`, `birthdate`,`userImg`, `fk_locationID`) 
+VALUES ('super','super', 'super@mail.com', 
+'8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05', 'https://cdn.pixabay.com/photo/2016/01/21/08/38/woman-1153102_960_720.jpg',3);
+INSERT INTO `users`(`firstName`, `lastName`, `email`, `userPass`, `birthdate`, `userImg`,`fk_locationID`) 
+VALUES ('nihad','abou', 'nihad@mail.com', 
+'8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92', '1986-11-05','https://cdn.pixabay.com/photo/2016/01/21/08/38/man-1153100_960_720.jpg', 4);
+
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Guizmo',
+    'cat',    
+    '2010-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_960_720.jpg',
+    'senior',
+    null,
+    1
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Bouchon',
+    'cat',    
+    '2019-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2017/11/14/13/06/kitty-2948404_960_720.jpg',
+    'small',
+    'https://www.kitty-cats.blog/',
+    3
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Hamtaro',
+    'hamster',    
+    '2020-01-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2015/03/26/09/41/hamster-690108_960_720.jpg',
+    'small',
+    'https://www.pinterest.com/transparentspec/hamtaro/',
+    2
+);
+
+
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Belle',
+    'dog',    
+    '2017-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2017/07/25/04/14/great-pyrenees-2536899_960_720.jpg',
+    'large',
+    null,
+    2
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Bernard',
+    'dog',    
+    '2018-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2016/08/02/20/42/domestic-dog-1564978_960_720.jpg',
+    'large',
+    null,
+    3
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Zeus',
+    'horse',    
+    '2010-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2017/12/10/15/16/white-horse-3010129_960_720.jpg',
+    'senior',
+    null,
+    4
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Blacki',
+    'horse',    
+    '2020-01-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2018/04/01/13/57/animal-3281017_960_720.jpg',
+    'large',
+    null,
+    4
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Wooly',
+    'sheep',    
+    '2010-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2019/12/04/23/34/sheep-4673941_960_720.jpg',
+    'senior',
+    null,
+    4
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Billy',
+    'sheep',    
+    '2020-01-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2019/01/03/11/53/lamb-3910805_960_720.jpg',
+    'large',
+    null,
+    4
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Moustik',
+    'cat',    
+    '2019-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2019/05/24/06/48/cat-4225674_960_720.jpg',
+    'small',
+    'https://www.scaryforkids.com/hello-kitty/',
+    3
+);
+
+INSERT INTO `animals`(`name`, `species`, `birthdate`, `adoptableDate`, `animalImg`, `type`, `website`, `fk_locationID`) VALUES (
+    'Gustave',
+    'dog',    
+    '2010-10-31',
+    '2020-03-27',
+    'https://cdn.pixabay.com/photo/2015/06/08/15/02/pug-801826_960_720.jpg',
+    'senior',
+    null,
+    2
+);
+
+INSERT INTO `hobbies`(`name`) 
+VALUES ('sleeping');
+INSERT INTO `hobbies`(`name`) 
+VALUES ('eating');
+INSERT INTO `hobbies`(`name`) 
+VALUES ('playing');
+INSERT INTO `hobbies`(`name`) 
+VALUES ('snoring');
+INSERT INTO `hobbies`(`name`) 
+VALUES ('cuddling');
+INSERT INTO `hobbies`(`name`) 
+VALUES ('being outside');
+
+
