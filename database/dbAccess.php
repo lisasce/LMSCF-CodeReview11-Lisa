@@ -195,4 +195,53 @@ function nameAdoptUser(){
     $conn->close();
     return $resultUsers;
 }
+
+function getUserDetails(){
+        $conn = connect();
+        $userID = $_GET['userID'];
+        $sql = "SELECT userID, firstName, lastName, address, birth, userImg, userStatus, activated, zip,city,country, coordX, coordY FROM `users`
+        left JOIN locations ON users.fk_locationID = locationID 
+        where userID= $userID";
+        $result = mysqli_query($conn, $sql);
+        $userInfo = mysqli_fetch_assoc($result);
+        // $response array
+        $response['data']=$userInfo;
+        //Generating JSON from the $response array
+        $json_response=json_encode($response);
+        // Outputting JSON to the client
+        mysqli_close($conn);
+        return $json_response;
+}
+
+function updateUser( $id,$activated, $firstName,$lastName,$birth,$status,$userImg, $address,$zip,$city,$country, $coordX, $coordY){
+    $conn = connect();
+    $firstName = clearString($firstName);
+    $birth = clearString($birth);
+    $lastName = clearString($lastName);
+    $status = clearString($status);
+    $userImg = clearString($userImg);
+    $activated = clearString($activated);
+    $address = clearString($address);
+    $zip = clearString($zip);
+    $city = clearString($city);
+    $country = clearString($country);
+    $coordX = clearString($coordX);
+    $coordY = clearString($coordY);
+
+
+    $sql1 = "
+    UPDATE `locations` SET `address` = '$address', `zip` = '$zip', `city` = '$city', `country` = '$country', `coordX`='$coordX', `coordY`='$coordY' WHERE locationID = (select fk_locationID from users WHERE userID = $id)  ";
+    $resLoc = mysqli_query($conn, $sql1);
+
+    $sql2 = "UPDATE `users` SET `firstname`= '$firstName',`lastName` = '$lastName', `birth` = '$birth',  `userStatus` = '$status', `userImg` = '$userImg', `activated` = '$activated'  WHERE userID = $id  ";
+    $resUser = mysqli_query($conn, $sql2);
+
+    if($resLoc == true && $resUser == true){
+        $conn->close();
+        return true;
+    } else {
+        $conn->close();
+        return "error";
+    }
+}
 ?>

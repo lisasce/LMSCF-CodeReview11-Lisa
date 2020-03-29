@@ -4,7 +4,7 @@ session_start();
 require_once 'database/dbAccess.php';
 $conn = connect();
 // if session is not admin and also not user, this will redirect to login page
-if(!isset($_SESSION['admin']) && !isset($_SESSION['user'])) {
+if(!isset($_SESSION['admin']) && !isset($_SESSION['user']) && !isset($_SESSION['superadmin'])) {
     header("Location: index.php");
     exit;
 }
@@ -106,8 +106,6 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
                         <br> ";
             }else{
                 echo "error";
-                echo "putain";
-
             }
         }
         ?>
@@ -133,10 +131,8 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
                 </select>
             </div>
 
-
             Free for adoption since:
             <input class ="form-control" type="date" name="adoptableSince" id="adoptableSince" placeholder ="Free for adoption since:" value="<?php echo $animalInfo['adoptableSince']?>" maxlength ="50"  /><br>
-
 
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
@@ -152,9 +148,6 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
                     ?>
                 </select>
             </div>
-
-
-
 
             Birthdate:
             <input class ="form-control" type="date" name="birthdate" id="birthdate" placeholder ="Birthdate" value="<?php echo $animalInfo['birthdate']?>" maxlength ="50"  /><br>
@@ -200,7 +193,6 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
 <footer class="navbar navbar-expand-lg navbar-dark bg-dark  mt-1 mt-sm-5 mb-0">
     <a class="navbar-brand" href="#">True &#x2764;</a>
 </footer>
-
 <script src="JS/jsFunctions.js"></script>
 </body>
 </html>

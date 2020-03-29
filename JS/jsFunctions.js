@@ -38,8 +38,32 @@ $(document).ready(function(){
     let lastInput = event.currentTarget.previousElementSibling;
     lastInput.parentElement.insertBefore(newField, lastInput);
  }
-
 $(".adding").click(addHobbyField);
 
-
+    $('#userSelect').change(function(){
+        let value = $(this).val();
+        if(value != '')
+        {
+            $.get("actions/getUserInfos.php?userID="+value,
+                function(response){
+                    let data = JSON.parse(response).data;
+                    $("#firstName").val(data.firstName);
+                    $("#lastName").val(data.lastName);
+                    $("#birth").val(data.birth);
+                    $("#userImg").val(data.userImg);
+                    $("#userAddress").val(data.address);
+                    $("#userCity").val(data.city);
+                    $("#userZip").val(data.zip);
+                    $("#userCountry").val(data.country);
+                    $("#userCoordX").val(data.coordX);
+                    $("#userCoordY").val(data.coordY);
+                    $("#status").val(data.userStatus);
+                    if (data.activated == "no"){
+                        $("#disabled").prop("checked", true);
+                    }else{
+                        $("#activated").prop("checked", true);
+                    }
+                });
+        }
+    });
 });

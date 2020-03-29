@@ -3,7 +3,7 @@ ob_start();
 session_start();
 require_once 'database/dbAccess.php';
 // if session is not admin and also not user, this will redirect to login page
-if( !isset($_SESSION['admin']) && !isset($_SESSION['user'])) {
+if(!isset($_SESSION['admin']) && !isset($_SESSION['user']) && !isset($_SESSION['superadmin'])) {
     header("Location: index.php");
     exit;
 }

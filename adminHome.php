@@ -4,7 +4,7 @@ session_start();
 require_once 'database/dbAccess.php';
 $conn = connect();
 // if session is not admin and also not user, this will redirect to login page
-if(!isset($_SESSION['admin']) && !isset($_SESSION['user'])) {
+if(!isset($_SESSION['admin']) && !isset($_SESSION['user']) && !isset($_SESSION['superadmin'])) {
     header("Location: index.php");
     exit;
 }
@@ -47,9 +47,6 @@ if(isset($_SESSION['user'])){  //if you are a user but not an admin
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active ml-5">
                     <a class="nav-link" id="add" href="addAnimal.php">Add a new animal</a>
-                </li>
-                <li class="nav-item active ml-5">
-                    <a class="nav-link" id="add" href="superadminHome.php">Manage users</a>
                 </li>
                 <li class="nav-item active ml-5">
                     <a class="nav-link" id="add" href="home.php">User's home</a>
