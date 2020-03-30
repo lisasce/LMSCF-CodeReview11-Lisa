@@ -4,7 +4,6 @@ session_start();
 require_once 'database/dbAccess.php';
 require_once 'database/function.php';
 $conn = connect();
-
 if( isset($_SESSION['user'])!="" ){ //if session user is not empty - when u never registered it's empty, first when you login there will be a value
     header("Location: home.php" ); // redirects to home.php
 }
@@ -15,18 +14,16 @@ if ( isset($_POST['btn-signup']) ) {
     $lastName = clearString($_POST["lastName"]);
     $email = clearString($_POST["email"]);
     $pass = clearString($_POST["pass"]);
-
-
     // basic name validation
     if (empty($firstName) ){
         $error = true ;
         $nameError = "Please enter your first name.";
     } else if (strlen($firstName) < 3) {
         $error = true;
-        $nameError = "Nickame must have at least 3 characters.";
-    } else if(!preg_match("/^[a-zA-Z- ]+$/",$firstName)) {
+        $nameError = "first name must have at least 3 characters.";
+    } else if(!preg_match("/^[a-zA-Z0-9- ]+$/",$firstName)) {
         $error = true;
-        $nameError = "Nickame must contain alphabets and space.";
+        $nameError = "first name must only contain alphabets and space.";
     }
 
     if (empty($lastName) ){
@@ -34,10 +31,10 @@ if ( isset($_POST['btn-signup']) ) {
         $nameError = "Please enter your last name.";
     } else if (strlen($lastName) < 3) {
         $error = true;
-        $nameError = "Nickame must have at least 3 characters.";
-    } else if(!preg_match("/^[a-zA-Z- ]+$/",$lastName)) {
+        $nameError = "last name must have at least 3 characters.";
+    } else if(!preg_match("/^[a-zA-Z0-9- ]+$/",$lastName)) {
         $error = true;
-        $nameError = "Nickame must contain alphabets and space.";
+        $nameError = "last name must only contain alphabets and space.";
     }
 
 
@@ -61,7 +58,7 @@ if ( isset($_POST['btn-signup']) ) {
         $passError = "Please enter password.";
     } else if(strlen($pass) < 6) {
         $error = true;
-        $passError = "Password must have atleast 6 characters." ;
+        $passError = "Password must have at least 6 characters." ;
     }
 
     // password hashing for security
@@ -69,7 +66,7 @@ if ( isset($_POST['btn-signup']) ) {
 
     // if there's no error, continue to signup
     if( !$error ) {
-        $query = "INSERT INTO users(firstName, email ,userPass) VALUES( '$firstName','$email','$pass')";
+        $query = "INSERT INTO users(firstName, lastName, email ,userPass) VALUES( '$firstName', '$lastName','$email','$pass')";
         $res = mysqli_query($conn, $query);
 
         if ($res) {
@@ -85,7 +82,6 @@ if ( isset($_POST['btn-signup']) ) {
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,7 +101,7 @@ if ( isset($_POST['btn-signup']) ) {
 <div id="content">
     <div id="header" class="container-fluid ">
         <div class="d-flex justify-between row mt-3" >
-            <img class="col-md-3 col-4 mx-auto ml-3 p-0" id="logo"  src="img/logo.JPG" alt="">
+            <img class="col-md-3 col-4 mx-auto ml-3 p-0" id="logo"  src="img/logo.jpg" alt="">
             <h1 class="font-weight-bold text-center col-md-6 col-12 mt-1">Welcome to True Friendship!</h1>
             <img class="col-md-2 col-4 mx-auto"  src="img/kitty.png" alt="">
         </div>
@@ -126,16 +122,13 @@ if ( isset($_POST['btn-signup']) ) {
 
             <?php
             if ( isset($errMSG) ) {
-
                 ?>
                 <div  class="alert alert-<?php echo $errTyp ?>" >
                     <?php echo  $errMSG; ?>
                 </div>
-
                 <?php
             }
             ?>
-
             <input type ="text"  name="firstName"  class ="form-control m-1"  placeholder ="Enter your First name"  maxlength ="50"   value = "<?php echo $firstName ?>"  />
             <span   class = "text-danger" > <?php   echo  $nameError; ?> </span >
 
@@ -160,7 +153,7 @@ if ( isset($_POST['btn-signup']) ) {
             <hr  />
 
             <a   href = "index.php" >Sign in Here...</a>
-        </form >
+        </form>
 
     </div>
 
@@ -170,8 +163,6 @@ if ( isset($_POST['btn-signup']) ) {
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="JS/jsFunctions.js"></script>
-
 </body>
 </html>
-
 <?php  ob_end_flush(); ?>

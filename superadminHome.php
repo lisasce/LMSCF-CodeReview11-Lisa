@@ -35,7 +35,7 @@ if(isset($_SESSION['admin'])){  //if you are a user but not an admin
 <div id="content">
     <div id="header" class="container-fluid ">
         <div class="d-flex justify-between row mt-3" >
-            <img class="col-md-3 col-4 mx-auto ml-3 p-0" id="logo"  src="img/logo.JPG" alt="">
+            <img class="col-md-3 col-4 mx-auto ml-3 p-0" id="logo"  src="img/logo.jpg" alt="">
             <h1 class="font-weight-bold text-center col-md-6 col-12 mt-1">Welcome to True Friendship!</h1>
             <img class="col-md-2 col-4 mx-auto"  src="img/kitty.png" alt="">
         </div>
@@ -187,7 +187,7 @@ if(isset($_SESSION['admin'])){  //if you are a user but not an admin
             <button   type = "submit"   class = "btn btn-block btn-warning"   name = "updatebtn" >Update users's info</button >
             <hr  />
 
-        </form >
+        </form>
 
     </div>
 <footer class="navbar navbar-expand-lg navbar-dark bg-dark  mt-1 mt-sm-5 mb-0">

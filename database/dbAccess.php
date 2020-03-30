@@ -111,6 +111,14 @@ function addAnimal($name,$species,$birth,$adoptableSince,$animalImg,$type,$websi
 
 }
 
+function deleteHobby($idH){
+    $conn = connect();
+    $sql = "DELETE FROM hobbies WHERE hobbyID = $idH";
+    $res= mysqli_query($conn, $sql);
+    $conn->close();
+    return $res;
+}
+
 
 function deleteAnimal($id){
     $conn = connect();

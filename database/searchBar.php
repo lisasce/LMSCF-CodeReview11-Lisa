@@ -2,9 +2,11 @@
 
 require_once 'dbAccess.php';
 $conn = connect();
-$name =  $_POST['search'];
-
-$result = $conn->query("
+$name =  isset($_POST['search']) ? $_POST["search"] : '';
+if(!preg_match("/^[a-zA-Z ]*/",$name)) {
+    echo "No result";
+}else {
+    $result = $conn->query("
 SELECT * FROM `animals` 
 INNER JOIN `locations` ON `fk_locationID`= `locationID`
 WHERE `species` LIKE '$name%'
@@ -27,4 +29,6 @@ foreach($output as $searchresult){
                             </div>";
 
 }
+}
+
 ?>

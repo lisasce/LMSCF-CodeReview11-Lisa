@@ -40,6 +40,24 @@ $(document).ready(function(){
  }
 $(".adding").click(addHobbyField);
 
+    $('.remove').click(function(event){
+        var hobbyID = $(this).val();
+           $.get(
+                "actions/deleteHobby.php?idH="+hobbyID,
+                function(response) {
+                    if(response == 1){
+                       let hobbiesDiv = $('#hobbiesDiv')[0];
+                       let elementToDelete = event.currentTarget.parentElement;
+                       hobbiesDiv.removeChild(elementToDelete);
+                    }
+                }
+                );
+           // event.stopPropagation();
+           // event.preventDefault();
+    });
+
+
+
     $('#userSelect').change(function(){
         let value = $(this).val();
         if(value != '')
